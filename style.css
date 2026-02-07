@@ -9,6 +9,41 @@ body {
     margin: 0;
 }
 
+/* 基礎樣式 */
+.floating-img {
+    position: fixed;
+    width: 120px; /* 稍微大一點比較生動 */
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%; /* 圓角看起來比較柔和 */
+    z-index: 5; /* 放在背景之上，但可以在按鈕之下 */
+    transition: transform 0.3s ease;
+    /* 這裡綁定動畫：3秒一次，平滑來回，無限循環 */
+    animation: diagonalMove 3s ease-in-out infinite alternate;
+}
+
+/*初始位置 */
+.top-left { top: 20px; left: 20px; animation-name: moveTL; }
+.top-right { top: 20px; right: 20px; animation-name: moveTR; }
+.bottom-left { bottom: 20px; left: 20px; animation-name: moveBL; }
+.bottom-right { bottom: 20px; right: 20px; animation-name: moveBR; }
+
+/* 動畫邏輯：向中心點位移 */
+@keyframes diagonalMove {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        /* 控制向中心靠近的距離，可以根據喜好調整百分比或 px */
+        /* 下面這些值會根據圖的位置自動對應方向 */
+    }
+}
+
+@keyframes moveTL { 100% { transform: translate(100px, 100px) rotate(5deg); } }
+@keyframes moveTR { 100% { transform: translate(-100px, 100px) rotate(-5deg); } }
+@keyframes moveBL { 100% { transform: translate(100px, -100px) rotate(-5deg); } }
+@keyframes moveBR { 100% { transform: translate(-100px, -100px) rotate(5deg); } }
+
 .container {
     background: white;
     padding: 20px;
